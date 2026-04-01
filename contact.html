@@ -1052,6 +1052,15 @@
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const successMessage = document.getElementById('successMessage');
+    const API_BASE_URL = (() => {
+      const currentHost = window.location.hostname;
+
+      if (currentHost === 'localhost' || currentHost === '127.0.0.1') {
+        return window.location.origin;
+      }
+
+      return window.location.origin;
+    })();
 
     // Validation patterns
     const patterns = {
@@ -1226,7 +1235,7 @@
         };
 
         // Send AJAX request to Node.js API
-        fetch('http://localhost:5000/api/contact', {
+        fetch(`${API_BASE_URL}/api/contact`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1289,7 +1298,7 @@
           btnLoading.style.display = 'none';
           submitBtn.disabled = false;
           successMessage.querySelector('h4').textContent = 'Connection Error';
-          successMessage.querySelector('p').textContent = 'There was a problem connecting to the server. Please check your internet connection and try again.';
+          successMessage.querySelector('p').textContent = 'The contact form could not reach the backend service. If you are opening this from GitHub or a static preview, the API must also be deployed.';
           successMessage.classList.add('show');
           setTimeout(() => {
             successMessage.classList.remove('show');
