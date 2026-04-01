@@ -23,6 +23,15 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+// Friendly admin page routes
+app.get('/admin', (req, res) => {
+  res.sendFile(__dirname + '/admin_login.html');
+});
+
+app.get('/admin/dashboard', (req, res) => {
+  res.sendFile(__dirname + '/admin_dashboard.html');
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
@@ -57,6 +66,8 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`\n✓ Zanzibar Tourism Backend Running`);
   console.log(`✓ Server: http://localhost:${PORT}`);
+  console.log(`✓ Admin Login: http://localhost:${PORT}/admin`);
+  console.log(`✓ Admin Dashboard: http://localhost:${PORT}/admin/dashboard`);
   console.log(`✓ Contact API: http://localhost:${PORT}/api/contact`);
   console.log(`✓ Admin API: http://localhost:${PORT}/api/admin`);
   console.log(`✓ Health Check: http://localhost:${PORT}/api/health`);
