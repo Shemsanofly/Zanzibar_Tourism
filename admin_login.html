@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Zanzibar Tourism</title>
+  <link href="Bootstap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --dark-blue: #0f172a;
+      --primary: #1e3a8a;
+      --accent: #3b82f6;
+      --danger: #ef4444;
+      --success: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+    }
+
+    .login-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 2.5rem;
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .login-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .login-subtitle {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--dark-blue);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, var(--accent) 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-login:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-login:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .alert {
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: none;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .alert-error {
+      background: #fee2e2;
+      color: #991b1b;
+      border-left: 4px solid var(--danger);
+    }
+
+    .alert-success {
+      background: #dcfce7;
+      color: #166534;
+      border-left: 4px solid var(--success);
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .login-footer p {
+      color: #6b7280;
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    .login-footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 1.5rem;
+      }
+
+      .login-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h1 class="login-title">Admin Access</h1>
+        <p class="login-subtitle">Zanzibar Tourism Portal</p>
+      </div>
+
+      <div id="alertContainer"></div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="username"><i class="fas fa-user me-2"></i>Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            placeholder="Enter admin username"
+            autocomplete="username"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password"><i class="fas fa-lock me-2"></i>Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="Enter admin password"
+            autocomplete="current-password"
+          >
+        </div>
+
+        <button type="submit" class="btn-login" id="submitBtn">
+          <i class="fas fa-sign-in-alt"></i>
+          Login to Dashboard
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <p>© 2025 Zanzibar Tourism Admin Panel</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:5000/api';
+
+    // If already logged in, redirect to dashboard
+    if (localStorage.getItem('adminToken')) {
+      window.location.href = 'admin_dashboard.html';
+    }
+
+    async function handleLogin(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const submitBtn = document.getElementById('submitBtn');
+      const alertContainer = document.getElementById('alertContainer');
+
+      // Disable button and show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="spinner"></div> Logging in...';
+
+      try {
+        const response = await fetch(`${API_URL}/admin/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          showAlert(data.message || 'Login failed. Please try again.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+          return;
+        }
+
+        // Store token
+        localStorage.setItem('adminToken', data.token);
+
+        showAlert('Login successful! Redirecting...', 'success');
+
+        // Redirect to dashboard after short delay
+        setTimeout(() => {
+          window.location.href = 'admin_dashboard.html';
+        }, 500);
+
+      } catch (error) {
+        showAlert('Connection error: ' + error.message, 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+      }
+    }
+
+    function showAlert(message, type) {
+      const alertContainer = document.getElementById('alertContainer');
+      const alertClass = type === 'error' ? 'alert-error' : 'alert-success';
+      const icon = type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle';
+
+      alertContainer.innerHTML = `
+        <div class="alert ${alertClass} show">
+          <i class="fas ${icon} me-2"></i>${message}
+        </div>
+      `;
+
+      if (type === 'error') {
+        setTimeout(() => {
+          alertContainer.innerHTML = '';
+        }, 5000);
+      }
+    }
+
+    // Allow Enter key to submit form
+    document.getElementById('loginForm').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('submitBtn').click();
+      }
+    });
+  </script>
+</body>
+</html>

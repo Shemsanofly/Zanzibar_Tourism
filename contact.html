@@ -539,25 +539,51 @@
       z-index: 2;
     }
 
-    .map-placeholder {
+    .map-frame {
       height: 400px;
-      background: var(--ocean-gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      position: relative;
+      width: 100%;
+      display: block;
+      border: 0;
     }
 
-    .map-placeholder::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="map-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23map-pattern)"/></svg>');
+    .map-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1.25rem 1.5rem 1.75rem;
+      background: #fff;
+    }
+
+    .map-action-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .map-action-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .map-action-primary {
+      background: var(--ocean-gradient);
+      color: white;
+      box-shadow: 0 12px 28px rgba(79, 172, 254, 0.25);
+    }
+
+    .map-action-secondary {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--dark-blue);
+    }
+
+    .map-location-link {
+      color: inherit;
+      text-decoration: underline;
     }
 
     /* Footer */
@@ -922,7 +948,7 @@
                   <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <h4>Visit Us</h4>
-                <p>Stone Town, Zanzibar Island</p>
+                <p><a href="#find-us" class="map-location-link">Stone Town, Zanzibar Island</a></p>
                 <p>Tanzania, East Africa</p>
                 <p style="font-size: 0.9rem; opacity: 0.8;">Office hours: 8AM - 6PM</p>
               </div>
@@ -934,16 +960,25 @@
   </section>
 
   <!-- Map Section -->
-  <section class="section map-section">
+  <section class="section map-section" id="find-us">
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">Find Us</h2>
       <div class="map-container" data-aos="zoom-in">
-        <div class="map-placeholder">
-          <div class="text-center">
-            <i class="fas fa-map-marked-alt fa-3x mb-3"></i>
-            <h4>Stone Town, Zanzibar</h4>
-            <p>Interactive map coming soon</p>
-          </div>
+        <iframe
+          class="map-frame"
+          title="Stone Town Zanzibar Map"
+          loading="lazy"
+          src="https://www.google.com/maps?q=Stone%20Town%2C%20Zanzibar&z=15&output=embed">
+        </iframe>
+        <div class="map-actions">
+          <a class="map-action-link map-action-primary" href="https://www.google.com/maps?q=Stone%20Town%2C%20Zanzibar" target="_blank" rel="noopener">
+            <i class="fas fa-location-arrow"></i>
+            Open in Google Maps
+          </a>
+          <a class="map-action-link map-action-secondary" href="https://www.google.com/maps?q=Stone%20Town%2C%20Zanzibar" target="_blank" rel="noopener">
+            <i class="fas fa-route"></i>
+            Get Directions
+          </a>
         </div>
       </div>
     </div>
@@ -1182,17 +1217,21 @@
         submitBtn.disabled = true;
 
         // Prepare form data with correct field names
-        const formData = new FormData();
-        formData.set('fullname', form.fullname.value.trim());
-        formData.set('email', form.email.value.trim());
-        formData.set('phone', form.phone.value.trim());
-        formData.set('subject', form.subject.value.trim());
-        formData.set('message', form.message.value.trim());
+        const requestData = {
+          fullname: form.fullname.value.trim(),
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim(),
+          subject: form.subject.value.trim(),
+          message: form.message.value.trim()
+        };
 
-        // Send AJAX request
-        fetch('submit_contact.php', {
+        // Send AJAX request to Node.js API
+        fetch('http://localhost:5000/api/contact', {
           method: 'POST',
-          body: formData
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestData)
         })
         .then(response => response.json())
         .then(data => {

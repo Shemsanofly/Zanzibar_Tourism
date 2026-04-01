@@ -309,6 +309,22 @@
       border-radius: 2px;
     }
 
+    .attractions-section {
+      background: var(--light-gray);
+    }
+
+    .card-icon-coral {
+      color: var(--coral);
+    }
+
+    .card-icon-turquoise {
+      color: var(--turquoise);
+    }
+
+    .card-icon-green {
+      color: #22c55e;
+    }
+
     .attraction-card {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
@@ -384,6 +400,131 @@
       color: var(--dark-gray);
       font-weight: 600;
       margin-left: 8px;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    }
+
+    .testimonial-card-home {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(79, 172, 254, 0.08);
+      border-radius: 24px;
+      padding: 2rem;
+      height: 100%;
+      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card-home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--ocean-gradient);
+    }
+
+    .testimonial-card-home:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 55px rgba(15, 23, 42, 0.12);
+    }
+
+    .testimonial-quote {
+      font-size: 2.5rem;
+      color: rgba(79, 172, 254, 0.22);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .testimonial-stars {
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text-home {
+      color: #4b5563;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      min-height: 120px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testimonial-avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--ocean-gradient);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 10px 20px rgba(79, 172, 254, 0.25);
+    }
+
+    .testimonial-name {
+      margin: 0;
+      font-weight: 700;
+      color: var(--dark-gray);
+    }
+
+    .testimonial-role {
+      margin: 0;
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
+
+    .testimonial-cta {
+      background: linear-gradient(135deg, rgba(79, 172, 254, 0.08), rgba(255, 107, 107, 0.08));
+      border: 1px solid rgba(79, 172, 254, 0.14);
+      border-radius: 24px;
+      padding: 2.25rem;
+    }
+
+    .testimonial-intro {
+      max-width: 760px;
+      color: #6b7280;
+      font-size: 1.15rem;
+    }
+
+    .testimonial-callout-title {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .testimonial-callout-text {
+      color: #6b7280;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .footer-tagline {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .footer-contact-icons {
+      font-size: 24px;
+    }
+
+    .footer-divider {
+      border-color: #374151;
+      margin: 2rem 0;
+    }
+
+    .footer-copy {
+      opacity: 0.8;
     }
 
     /* Footer */
@@ -653,7 +794,7 @@
   </section>
 
   <!-- Attractions Section -->
-  <section id="attractions" class="section" style="background: var(--light-gray);">
+  <section id="attractions" class="section attractions-section">
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">Top Attractions</h2>
       
@@ -671,7 +812,7 @@
                 <span class="rating-number">4.8</span>
               </div>
               <h5 class="card-title">
-                <i class="fas fa-building me-2" style="color: var(--coral);"></i>
+                <i class="fas fa-building me-2 card-icon-coral"></i>
                 Stone Town
               </h5>
               <p class="card-text">Explore the rich history and unique architecture of this UNESCO World Heritage site with winding alleys and vibrant markets.</p>
@@ -692,7 +833,7 @@
                 <span class="rating-number">4.9</span>
               </div>
               <h5 class="card-title">
-                <i class="fas fa-water me-2" style="color: var(--turquoise);"></i>
+                <i class="fas fa-water me-2 card-icon-turquoise"></i>
                 Nungwi Beach
               </h5>
               <p class="card-text">Relax on pristine white sands and swim in crystal-clear turquoise waters of Zanzibar's most spectacular beach paradise.</p>
@@ -713,13 +854,85 @@
                 <span class="rating-number">4.7</span>
               </div>
               <h5 class="card-title">
-                <i class="fas fa-tree me-2" style="color: #22c55e;"></i>
+                <i class="fas fa-tree me-2 card-icon-green"></i>
                 Jozani Forest
               </h5>
               <p class="card-text">Meet the rare Red Colobus monkeys in this lush, green natural forest reserve and discover exotic wildlife in their habitat.</p>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">What People Say About Us</h2>
+      <p class="text-center mx-auto mb-5 testimonial-intro" data-aos="fade-up" data-aos-delay="100">
+        Real feedback from travelers who experienced our Zanzibar tours, accommodation, and local hospitality.
+      </p>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-card-home">
+            <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text-home">Everything felt organized, professional, and genuinely personal. The team made our Zanzibar trip seamless from planning to the final day, and every detail was handled with care.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SJ</div>
+              <div>
+                <p class="testimonial-name">Sarah Johnson</p>
+                <p class="testimonial-role">Family Traveler, UK</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card-home">
+            <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text-home">The service was exceptional and very professional. Our guide was knowledgeable, the accommodation recommendations were excellent, and the whole experience felt trustworthy and refined.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MR</div>
+              <div>
+                <p class="testimonial-name">Michael Reed</p>
+                <p class="testimonial-role">Business Traveler, Canada</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="testimonial-card-home">
+            <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text-home">We wanted something official, elegant, and authentic, and that is exactly what we received. The spice tour and dhow cruise were beautifully arranged and unforgettable.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AP</div>
+              <div>
+                <p class="testimonial-name">Amina Patel</p>
+                <p class="testimonial-role">Couple Traveler, UAE</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-cta mt-5 text-center" data-aos="fade-up">
+        <h3 class="mb-3 testimonial-callout-title">Trusted by guests who value quality</h3>
+        <p class="mb-4 testimonial-callout-text">We build every trip to feel polished, welcoming, and memorable. If you are ready for a Zanzibar experience that feels well-managed from the first message, we are ready to help.</p>
+        <a href="contact.html" class="btn btn-hero">
+          <i class="fas fa-paper-plane me-2"></i>
+          Plan Your Trip
+        </a>
       </div>
     </div>
   </section>
@@ -732,7 +945,7 @@
           <i class="fas fa-umbrella-beach me-2"></i>
           Zanzibar Tourism
         </h3>
-        <p class="mb-4" style="font-size: 1.1rem; opacity: 0.9;">Where Paradise Lives - Experience the magic of Zanzibar</p>
+        <p class="mb-4 footer-tagline">Where Paradise Lives - Experience the magic of Zanzibar</p>
         
       <div class="social-links">
   <a href="https://facebook.com/yourusername" target="_blank" rel="noopener" title="Facebook">
@@ -746,7 +959,7 @@
   </a>
         </div>
 
-<div class="contact-icons" style="font-size: 24px;">
+<div class="contact-icons footer-contact-icons">
   <a href="https://www.google.com/maps/place/Stone+Town,+Zanzibar" target="_blank" rel="noopener" title="Location" class="contact-icon">
     <i class="fas fa-map-marker-alt"></i>
     </a>
@@ -763,8 +976,8 @@
 
 
         
-        <hr style="border-color: #374151; margin: 2rem 0;">
-        <p class="mb-0" style="opacity: 0.8;">&copy; 2025 Zanzibar Tourism - Where Paradise Lives. All rights reserved.</p>
+        <hr class="footer-divider">
+        <p class="mb-0 footer-copy">&copy; 2025 Zanzibar Tourism - Where Paradise Lives. All rights reserved.</p>
       </div>
     </div>
   </footer>
